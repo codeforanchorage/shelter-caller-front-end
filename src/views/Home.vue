@@ -2,8 +2,8 @@
  <div id="content">
     <h2><font-awesome-icon class="arrow" icon="step-backward" v-on:click="dayback" /><span id="currentDate">{{date}}</span> <font-awesome-icon v-if="daysback" class="arrow" icon="step-forward" v-on:click="dayforward" /> </h2>
     <div id="calls">
-      <div v-for="call in calls" v-bind:key="call.name">
-        <sheltercount :data='call'></sheltercount>
+      <div v-for="count in counts" v-bind:key="count.name">
+        <sheltercount :data='count'></sheltercount>
       </div>
     </div>
     <div id="twoWeek">
@@ -27,7 +27,7 @@ export default {
   name: 'home',
   data(){
       return {
-          calls:[],
+          counts:[],
           date:'', 
           daysback: 0
       }
@@ -48,10 +48,7 @@ export default {
       getcalls(){
         axios.get(`${process.env.VUE_APP_API_URL}calls/${this.daysback}`)
         .then(res => {
-            res.data.counts.forEach(item => {
-                item.calls = item.calls.sort((a, b) => b.time.localeCompare(a.time))
-            })
-            this.calls = res.data.counts
+            this.counts = res.data.counts
             this.date = res.data.date
         })
       }

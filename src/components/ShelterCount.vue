@@ -23,23 +23,24 @@ export default {
     components:{circlecount},
     computed:{
         latestCall(){
-            return this.data.calls.length  // the api will respond with [null] if there are no calls
-            ? this.data.calls[0].count
-            : "-"     
+            return this.data.bedcount == null  // the api will respond with [null] if there are no calls
+            ? "-"    
+            : this.data.bedcount
+             
         },
         latestTime(){
-            if (this.data.calls.length === 0) {
+            if (this.data.bedcount == null) {
                 return 'No Report' 
             }
-            let d = new Date( this.data.calls[0].time)
+            let d = new Date( this.data.time)
             let day = days[d.getDay()]
             let month = months[d.getMonth()]
             return `${day}, ${month} ${d.getDate()} - ${d.getHours()}:${d.getMinutes().toString().padStart(2, '0')}`
         },
         percent(){
-            return this.data.calls.length  // the api will respond with [null] if there are no calls
-            ? (((this.data.capacity - this.data.calls[0].count)/ this.data.capacity) * 100).toFixed(2) + '% capacity'
-            : "-"   
+            return this.data.bedcount == null 
+            ? "-"
+            : (((this.data.capacity - this.data.bedcount)/ this.data.capacity) * 100).toFixed(2) + '% capacity'       
         }
     }
 }
