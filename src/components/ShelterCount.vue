@@ -1,11 +1,10 @@
 <template>
-    <div class="call">
+    <div class="call" v-if="data">
         <h4>{{data.name}}</h4>
-      <!-- <div class="count">{{latestCall}}</div> -->
-        <circlecount :count='latestCall' :data="data"></circlecount>
+        <circlecount :percent="percent" :data="data"></circlecount>
         <div class='calldata'>
             Reported:<br/>
-            {{latestTime}}<br />
+            {{data.time | toDate}}<br />
             {{percent}}
            
         </div>
@@ -21,21 +20,22 @@ export default {
     name: "shelterCount",
     props:['data'],
     components:{circlecount},
+    filters:{
+        toDate: function(value){
+            if(!value) return "No Report"
+            let d = new Date(value)
+            let day = days[d.getDay()]
+            let month = months[d.getMonth()]
+            return `${day}, ${month} ${d.getDate()} - ${d.getHours()}:${d.getMinutes().toString().padStart(2, '0')}`
+
+        }
+    },
     computed:{
         latestCall(){
             return this.data.bedcount == null  // the api will respond with [null] if there are no calls
             ? "-"    
             : this.data.bedcount
              
-        },
-        latestTime(){
-            if (this.data.bedcount == null) {
-                return 'No Report' 
-            }
-            let d = new Date( this.data.time)
-            let day = days[d.getDay()]
-            let month = months[d.getMonth()]
-            return `${day}, ${month} ${d.getDate()} - ${d.getHours()}:${d.getMinutes().toString().padStart(2, '0')}`
         },
         percent(){
             return this.data.bedcount == null 
