@@ -127,7 +127,9 @@
         border-radius: .5em;   
         float: right;
         outline: none;
-        color:dimgray
+        color:dimgray;
+        background-color: white;
+
     }
   
     button:hover{

@@ -76,10 +76,7 @@ export default {
         cursor: pointer;
         
     }
-    #content{
-        
-        
-    }
+    
     #twoWeek h4{
         padding: 0 1em;
     }
