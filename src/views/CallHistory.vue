@@ -13,6 +13,7 @@
             <th>raw input</th>
             <th>type</th>
             <th>time</th>
+            <th>error</th>
         <tr>
         <tr v-for="row in history" v-bind:key="row.time">
             <td>{{row.from_number | formatPhone}}</td>
@@ -20,6 +21,7 @@
             <td>{{row.inputtext}}</td>
             <td>{{row.contact_type}}</td>
             <td>{{row.time | formatDate}}</td>
+            <td>{{row.error}}</td>
         </tr>
     </table>
     

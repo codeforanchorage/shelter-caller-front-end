@@ -1,5 +1,5 @@
 <template>
-    <router-link tag="div" class="call" v-if="data" :to="{name: 'callhistory', params:{shelterid: data.shelterID}}">
+    <router-link tag="div" class="call" v-if="data" :to="{name: 'callhistory', params:{shelterid: data.id}}">
         <h4>{{data.name}}</h4>
         <circlecount :percent="percent" :data="data"></circlecount>
         <div class='calldata'>
