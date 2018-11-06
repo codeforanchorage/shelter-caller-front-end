@@ -1,15 +1,13 @@
 <template>
-    <div class="call" v-if="data">
+    <router-link tag="div" class="call" v-if="data" :to="{name: 'callhistory', params:{shelterid: data.shelterID}}">
         <h4>{{data.name}}</h4>
         <circlecount :percent="percent" :data="data"></circlecount>
         <div class='calldata'>
             Reported:<br/>
             {{data.time | toDate}}<br />
             {{percent}}
-           
         </div>
-        
-    </div>
+    </router-link>
 </template>
 <script>
 import circlecount from '@/components/CircleCount.vue'
@@ -20,6 +18,11 @@ export default {
     name: "shelterCount",
     props:['data'],
     components:{circlecount},
+    methods:{
+        gotohistory(){
+            console.log(this.data.shelterID)
+        }
+    },
     filters:{
         toDate: function(value){
             if(!value) return "No Report"
@@ -54,6 +57,10 @@ export default {
     border-radius: 10%;
     min-width: 10em;
     }
+.call:hover{
+    background-color: #ddd;
+    cursor: pointer;
+}
 .count{
     width: 2em;
     height: 2em;

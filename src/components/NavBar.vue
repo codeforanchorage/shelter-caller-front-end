@@ -4,12 +4,11 @@
            <div class="nav_title">Bed<b>Count</b></div>
             <div class="space"></div>
             <div class="navlink">
-                <router-link :to="{name: 'shelters'}">Shelters <font-awesome-icon icon="bed" /> </router-link>
-            </div>
-            <div class="navlink">
                 <router-link :to="{name: 'home'}">Counts <font-awesome-icon icon="chart-bar" /></router-link>
             </div>
-
+            <div class="navlink">
+                <router-link :to="{name: 'shelters'}">Shelters <font-awesome-icon icon="bed" /> </router-link>
+            </div>
         </div>
     </nav>
 </template>

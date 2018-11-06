@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-
+import CallHistory from './views/CallHistory.vue'
 
 Vue.use(Router)
 
@@ -26,6 +26,11 @@ export default new Router({
         path: '/shelters',
         name: 'shelters',
         component: () => import(/* webpackChunkName: "shelters" */ './views/Shelters.vue')
+    },
+    {
+        path:'/callhistory/:shelterid',
+        name: 'callhistory',
+        component: CallHistory
     }
   ]
 })

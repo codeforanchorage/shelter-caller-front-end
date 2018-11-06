@@ -8,7 +8,7 @@
                     <font-awesome-icon icon="id-card" /> {{shelter.login_id}} <font-awesome-icon icon="bed" style="margin-left:.4em" /> {{shelter.capacity}}
                 </p>
                 <p class="cardFooter">
-                    <font-awesome-icon v-on:click="flip" class="card-control" icon="edit" /> <font-awesome-icon icon="chart-bar" />
+                    <font-awesome-icon v-on:click="flip" class="card-control" icon="edit" /> 
                 </p>
             </div>
             <shelterform class="back" :shelter="shelter" @cardflipped="flip" @delete="deleteshelter">

@@ -10,9 +10,9 @@ export default {
             data:{}
         }
     },
-    methods:{ //TODO fix api call so data is in an eaier format
+    methods:{ 
         getcalls(){
-        return axios.get(`${process.env.VUE_APP_API_URL}callhistory/${this.daysback}/`)
+        return axios.get(`${process.env.VUE_APP_API_URL}counthistory/${this.daysback}/`)
         .then(res => {
             this.data.labels = res.data.dates
             let shelters = res.data.shelters
