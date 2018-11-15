@@ -36,6 +36,9 @@
         font-size: 24px;
         text-overflow: ellipsis;
     }
+    .nav_title b{
+        color: coral
+    }
     .space{
         flex-grow: 1;
     }

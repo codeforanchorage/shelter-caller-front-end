@@ -93,5 +93,10 @@ export default {
         opacity: 0;
         transform: translateY(-30px);
     }
+    .addshelter h2:hover{
+        color:coral;
+        cursor: pointer;
+
+    }
     
 </style>

@@ -52,10 +52,11 @@ export default {
 .call{
     margin: 0 .5em .5em 0;
     padding: 0em 1em .5em 1em;
-    border: 1px solid #eee;
+    border: 1px solid lightgray;
     text-align: center;
     border-radius: 10%;
     min-width: 10em;
+    background-color: white;
     }
 .call:hover{
     background-color: #ddd;

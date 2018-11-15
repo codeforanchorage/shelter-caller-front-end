@@ -62,6 +62,9 @@
 </script>
 
 <style scoped>
+    #shelteredit{
+        border: 1px solid #ddd;
+    }
     .new-shelter{
         position: relative;
         width: 20em;
@@ -92,7 +95,7 @@
     input{
         padding: 10px;
         outline: none;
-        background-color: #fafafa;
+        background-color: #f6f6f6;
         border: none;
         flex-grow: 1;
         flex-shrink: 1;
@@ -112,8 +115,7 @@
         margin-bottom: .2em;
         display: flex;
     }
-    .formFooter{
-      
+    .formFooter{  
         bottom:0px;
         margin-bottom:0px;
         padding: .4em 1em;
@@ -124,6 +126,11 @@
     .card-control{
         margin-right: .75em;
     }
+    .card-control:hover{
+       color:coral;
+       cursor: pointer;
+    }
+
     .back{
         overflow: hidden;
     }

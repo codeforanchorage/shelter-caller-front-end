@@ -1,5 +1,6 @@
 <template>
- <div id="content">
+<div>
+ <div id="content"  v-if="loaded">
     <h2><font-awesome-icon class="arrow" icon="step-backward" v-on:click="dayback" /><span id="currentDate">{{date}}</span> <font-awesome-icon v-if="daysback" class="arrow" icon="step-forward" v-on:click="dayforward" /> </h2>
     <div id="calls">
       <div v-for="count in counts" v-bind:key="count.name">
@@ -15,6 +16,15 @@
         </div>
     </div>
  </div>
+ <div v-else id =loading>
+    <h3>
+        loading data
+    </h3>
+    <div v-if="error" id="errorText">
+        <font-awesome-icon icon="exclamation-circle"></font-awesome-icon> {{error}}
+    </div>
+</div>
+ </div>
 </template>
 
 <script>
@@ -29,7 +39,9 @@ export default {
       return {
           counts:[],
           date:'', 
-          daysback: 0
+          daysback: 0,
+          loaded:false,
+          error:undefined
       }
   },
   components: {
@@ -50,7 +62,9 @@ export default {
         .then(res => {
             this.counts = res.data.counts
             this.date = res.data.date
+            this.loaded = true
         })
+        .catch(() => this.error = "Error loading network data")
       }
   },
   created: function(){
@@ -67,9 +81,19 @@ export default {
     h2{
         text-align: center;
         background-color: dimgray;
-        color: #eee;
-        padding: .25em;
+        color: whitesmoke;
+        padding: .125em;
         margin-top: 0;
+        font-size: 1.25em;
+        text-transform: uppercase;
+
+    }
+    #loading{
+        text-align: center;
+        color: #ddd;
+    }
+    #errorText{
+        color: coral;
     }
     .arrow:hover{
         color:lightgrey;

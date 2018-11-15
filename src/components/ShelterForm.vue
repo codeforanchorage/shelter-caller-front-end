@@ -122,7 +122,7 @@
     input{
         padding: 10px;
         outline: none;
-        background-color: #fafafa;
+        background-color: #f6f6f6;
         border: none;
         flex-grow: 1;
         flex-shrink: 1;
@@ -153,6 +153,10 @@
     }
     .card-control{
         margin-right: .75em;
+    }
+    .card-control:hover{
+       color:coral;
+       cursor: pointer;
     }
     .back{
         overflow: hidden;
