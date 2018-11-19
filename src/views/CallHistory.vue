@@ -13,14 +13,16 @@
             <th>raw input</th>
             <th>type</th>
             <th>time</th>
+            <th>action</th>
             <th>error</th>
         <tr>
         <tr v-for="row in history" v-bind:key="row.time">
             <td>{{row.from_number | formatPhone}}</td>
-            <td>{{row.bedcount}}</td>
-            <td>{{row.inputtext}}</td>
+            <td>{{row.parsed_text}}</td>
+            <td>{{row.input_text}}</td>
             <td>{{row.contact_type}}</td>
             <td>{{row.time | formatDate}}</td>
+             <td>{{row.action}}</td>
             <td>{{row.error}}</td>
         </tr>
     </table>
@@ -69,10 +71,10 @@
                 this.getHistory()
             },
             getHistory(){
-                return axios.get(`${process.env.VUE_APP_API_URL}callhistory/${this.$route.params.shelterid}/${this.page - 1}/`)
+                return axios.get(`${process.env.VUE_APP_API_URL}logs/${this.$route.params.shelterid}/${this.page - 1}/`)
                 .then(res => {
                     this.sheltername = res.data.shelter
-                    this.history = res.data.calls
+                    this.history = res.data.logs
                     this.totalcalls = res.data.total_calls
                     this.pagesize = res.data.page_size
                 })

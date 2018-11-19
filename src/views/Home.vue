@@ -58,7 +58,7 @@ export default {
           this.getcalls()
       },
       getcalls(){
-        axios.get(`${process.env.VUE_APP_API_URL}calls/${this.daysback}`)
+        axios.get(`${process.env.VUE_APP_API_URL}counts/${this.daysback}`)
         .then(res => {
             this.counts = res.data.counts
             this.date = res.data.date
