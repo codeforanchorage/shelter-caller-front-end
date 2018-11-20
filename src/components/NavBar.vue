@@ -3,11 +3,14 @@
         <div class="toolbar_content">
            <div class="nav_title">Bed<b>Count</b></div>
             <div class="space"></div>
-            <div class="navlink">
+            <div class="navlink" v-if="loggedin">
                 <router-link :to="{name: 'home'}">Counts <font-awesome-icon icon="chart-bar" /></router-link>
             </div>
-            <div class="navlink">
+            <div class="navlink" v-if="loggedin">
                 <router-link :to="{name: 'shelters'}">Shelters <font-awesome-icon icon="bed" /> </router-link>
+            </div>
+            <div class="navlink" v-if="loggedin">
+                 <a @click="signout">sign out <font-awesome-icon icon="sign-out-alt" /></a>
             </div>
         </div>
     </nav>
@@ -17,6 +20,17 @@
         name: 'navbar',
         props: {
             msg: String
+        },
+        methods: {
+            signout(){
+                this.$root.signOut()
+                this.$router.push('/Login')
+            }
+        },
+        computed:{
+            loggedin() {
+                return this.$root.loggedIn
+            }
         }
     }
 </script>
