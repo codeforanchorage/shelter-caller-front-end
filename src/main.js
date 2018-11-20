@@ -22,7 +22,8 @@ axios.interceptors.request.use(function(config) {
     })  
 
 axios.interceptors.response.use(null, function (error) {
-    if (error.response.status === 403) {
+    console.log("in interceptor.response", error)
+    if (error.response.status === 403 || error.response.status === 401) {
         console.log('Failed to login')
         router.push('/Login')
     }
