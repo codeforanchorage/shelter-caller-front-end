@@ -3,16 +3,16 @@
         <h4>{{data.name}}</h4>
         <circlecount :percent="percent" :data="data"></circlecount>
         <div class='calldata'>
-            Reported:<br/>
-            {{data.time | toDate}}<br />
+            No. in Shelter: {{data.personcount}}<br />
+            Reported: {{data.time | toDate}}<br />
             {{percent}}
         </div>
     </router-link>
 </template>
 <script>
 import circlecount from '@/components/CircleCount.vue'
-const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+// const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+// const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
 export default {
     name: "shelterCount",
@@ -27,9 +27,7 @@ export default {
         toDate: function(value){
             if(!value) return "No Report"
             let d = new Date(value)
-            let day = days[d.getDay()]
-            let month = months[d.getMonth()]
-            return `${day}, ${month} ${d.getDate()} - ${d.getHours()}:${d.getMinutes().toString().padStart(2, '0')}`
+            return `${d.getHours()}:${d.getMinutes().toString().padStart(2, '0')}`
 
         }
     },
