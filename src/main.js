@@ -24,8 +24,6 @@ axios.interceptors.request.use(function(config) {
 axios.interceptors.response.use(null, function (error) {
     console.log("in interceptor.response", error)
     if (error.response.status === 403 || error.response.status === 401) {
-        console.log('Failed to login')
-        auth.loggedIn = false
         router.push('/Login')
     }
     return Promise.reject(error)
