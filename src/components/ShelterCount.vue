@@ -3,9 +3,9 @@
         <h4>{{data.name}}</h4>
         <circlecount :percent="percent" :data="data"></circlecount>
         <div class='calldata'>
-            No. in Shelter: {{data.personcount}}<br />
-            Reported: {{data.time | toDate}}<br />
-            {{percent}}
+            <span v-if="data.personcount">No. in Shelter: {{data.personcount}}</span><br />
+            {{percent}}<br />
+            Reported: {{data.time | toDate}}
         </div>
     </router-link>
 </template>
@@ -40,7 +40,7 @@ export default {
         },
         percent(){
             return this.data.bedcount == null 
-            ? "-"
+            ? ""
             : (((this.data.capacity - this.data.bedcount)/ this.data.capacity) * 100).toFixed(2) + '% capacity'       
         }
     }

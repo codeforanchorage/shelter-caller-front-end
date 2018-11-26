@@ -63,6 +63,9 @@ export default {
                 e.target.querySelector("input").blur()
                 })
         }
+    },
+    created(){
+        this.$root.signOut()
     }
 }
 

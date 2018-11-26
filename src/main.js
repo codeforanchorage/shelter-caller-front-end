@@ -15,7 +15,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false
 
 axios.interceptors.request.use(function(config) {
-    if (auth.token ) config.headers.Authorization = `Bearer ${auth.token}`
+    if (auth.token ) config.headers.Authorization = `Bearer ${auth.token}`;
     return config
     }, function(err) {
         return Promise.reject(err);
@@ -25,6 +25,7 @@ axios.interceptors.response.use(null, function (error) {
     console.log("in interceptor.response", error)
     if (error.response.status === 403 || error.response.status === 401) {
         console.log('Failed to login')
+        auth.loggedIn = false
         router.push('/Login')
     }
     return Promise.reject(error)
