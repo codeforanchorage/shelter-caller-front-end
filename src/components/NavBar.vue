@@ -10,6 +10,9 @@
                 <router-link :to="{name: 'shelters'}">Shelters <font-awesome-icon icon="bed" /> </router-link>
             </div>
             <div class="navlink" v-if="loggedin">
+                <router-link :to="{name: 'preferences'}">Prefs <font-awesome-icon icon="cogs" /> </router-link>
+            </div>
+            <div class="navlink" v-if="loggedin">
                  <a @click="signout">sign out <font-awesome-icon icon="sign-out-alt" /></a>
             </div>
         </div>
