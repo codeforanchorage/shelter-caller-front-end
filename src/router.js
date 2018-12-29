@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import CallHistory from './views/CallHistory.vue'
 import Login from '@/views/Login'
+import Prefs from '@/views/Prefs'
 
 Vue.use(Router)
 
@@ -32,6 +33,12 @@ export default new Router({
         name: 'callhistory',
         meta: { requiresAuth: true },
         component: CallHistory
+    },
+    {
+        path:'/prefs',
+        name: 'preferences',
+        meta: {requiresAuth: true},
+        component: Prefs
     }
   ]
 })
