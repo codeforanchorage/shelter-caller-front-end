@@ -22,7 +22,7 @@
             </div>
             <div slot="back">
                 <label for="start_day">Start of day: </label>
-                <input id="start_day" name="start_day" type="time" class="time" v-model="prefs.start_day" required>
+                <input id="start_day" name="start_day" type="time" class="time" v-model="prefs.start_day" required pattern="[0-9]{2}:[0-9]{2}">
 
             </div>
         </flipcard>
@@ -47,11 +47,11 @@
                 </div>
                 <div class="times">
                     <label for="open_time">open</label><br>
-                    <input id="open_time" class="time" type="time" name="open_time"  v-model="prefs.open_time" required>
+                    <input id="open_time" class="time" type="time" name="open_time"  v-model="prefs.open_time" required >
                 </div>
                 <div class="times">
                     <label for="close_time">close</label><br>
-                    <input id="close_time" class="time" type="time" name="close_time" v-model="prefs.close_time" required>
+                    <input id="close_time" class="time" type="time" name="close_time" v-model="prefs.close_time" required >
                 </div>
             </div>
             </div>
@@ -133,6 +133,7 @@ export default {
     .time {
         border:none;
         font-size: 1em;
+        max-width: 8em;
         
     }
    .onoffswitch {
