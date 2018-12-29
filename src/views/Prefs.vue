@@ -28,14 +28,15 @@
         </flipcard>
        <flipcard @cardflipped="saveData">
             <div slot="front">
-                <b>Start/Stop Times: {{prefs.enforce_hours ? "Enabled" : "Disabled"}}</b><br>
+                <b>Start/Stop Times</b><br>
+                Current Status: {{prefs.enforce_hours ? "Enabled" : "Disabled"}}<br>
                 Open: {{prefs.open_time | AMPM}} — Close: {{prefs.close_time | AMPM}} 
                 <p class="instruction">
                    If enabled, input from calls and texts will only be accepted between open and close times
                 </p>
             </div>
             <div slot="back">
-                <div class="controls">
+               
                 <div id ="switch">
                     <div class="onoffswitch">
                         <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" v-model="prefs.enforce_hours">
@@ -45,6 +46,7 @@
                         </label>
                     </div>
                 </div>
+                <div class="controls">
                 <div class="times">
                     <label for="open_time">open</label><br>
                     <input id="open_time" class="time" type="time" name="open_time"  v-model="prefs.open_time" required >
@@ -128,7 +130,8 @@ export default {
         display: flex;
     }
     .times {
-        margin-left: 1em;
+       margin-top: .5em;
+       margin-right: .5em;
     }
     .time {
         border:none;
