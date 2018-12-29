@@ -1,5 +1,5 @@
 <template>
-  <div id="prefs" v-if="loaded">   
+  <div id="prefs">   
         <h1>Preferences </h1>
         <flipcard @cardflipped="saveData">
             <div slot="front">
@@ -88,6 +88,7 @@ export default {
     },
     filters:{
         AMPM: function(time){
+            if (!time) return time
             let [hours, minutes] = time.split(":")
             hours = Number(hours)
             let ampm = hours < 12 ? "AM" : "PM"
