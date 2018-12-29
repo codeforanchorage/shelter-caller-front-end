@@ -47,7 +47,6 @@ export default {
             axios.post(apiURL, {user: this.user, password: this.password} )
             .then(r => {
                 this.loading = false
-                console.log(r.data)
                 if(r.data.jwt){
                     auth.token =  r.data.jwt
                     this.$root.signIn()
@@ -55,7 +54,6 @@ export default {
                 }
                 })
             .catch(err => {
-                console.log(err.response.data.msg)
                 this.loading = false
                 this.error = err.response.message
                 this.password = ''
