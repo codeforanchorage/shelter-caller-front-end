@@ -14,7 +14,9 @@ export default {
     },
     methods:{
         draw(){
-            let countText = this.data.bedcount == null ? '-' : this.data.bedcount
+            let countText = this.data.bedcount == null 
+                ? '-' 
+                : this.data.bedcount < 0 ? 0 : this.data.bedcount
             let stop =  this.data.bedcount == null ? 0: (this.data.capacity - this.data.bedcount)/this.data.capacity
 
             let w = this.$refs['the_canvas'].width

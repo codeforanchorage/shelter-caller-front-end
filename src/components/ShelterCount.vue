@@ -39,8 +39,10 @@ export default {
              
         },
         percent(){
-            return this.data.bedcount == null 
-            ? ""
+            if (this.data.bedcount == null) return ""
+            console.log(this.data.name, this.data.bedcount, this.data.capacity)
+            return this.data.bedcount < 0 
+            ? "100% capacity"
             : (((this.data.capacity - this.data.bedcount)/ this.data.capacity) * 100).toFixed(2) + '% capacity'       
         }
     }
