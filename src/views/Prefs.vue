@@ -1,7 +1,11 @@
 <template>
   <div id="prefs">   
         <h1>Preferences </h1>
-        <flipcard @cardflipped="saveData">
+        <div id="errors" v-bind:class="{error: errors}">
+            {{errors}}
+        </div>
+        <!-- Set Time Zone -->
+        <flipcard id="timeZone" @showFront="flipCard" @showBack="showBack" :isFlipped="cardState.timeZone">
             <div slot="front">
                 <b>Timezone: {{prefs.timezone}}</b>
                 <p class="instruction">
@@ -13,7 +17,9 @@
                 <input id="timezone" name="timezone" v-model="prefs.timezone">
             </div>
         </flipcard>
-        <flipcard @cardflipped="saveData">
+  
+        <!-- Set Start of Day -->
+        <flipcard id="StartOfDay" @showFront="flipCard" @showBack="showBack" :isFlipped="cardState.StartOfDay">
             <div slot="front">
                 <b>Start of Day: {{prefs.start_day | AMPM}}</b>
                 <p class="instruction">
@@ -22,11 +28,13 @@
             </div>
             <div slot="back">
                 <label for="start_day">Start of day: </label>
-                <input id="start_day" name="start_day" type="time" class="time" v-model="prefs.start_day" required pattern="[0-9]{2}:[0-9]{2}">
+                <input id="start_day" type="time" name="start_day"  class="time" v-model="prefs.start_day" required pattern="[0-9]{2}:[0-9]{2}">
 
             </div>
         </flipcard>
-       <flipcard @cardflipped="saveData">
+
+        <!-- Set hours prefs -->
+        <flipcard id="hours" @showFront="flipCard" @showBack="showBack" :isFlipped="cardState.hours">
             <div slot="front">
                 <b>Start/Stop Times</b><br>
                 Current Status: {{prefs.enforce_hours ? "Enabled" : "Disabled"}}<br>
@@ -68,17 +76,47 @@ import flipcard from '@/components/FlipCard.vue'
 export default {
   name: 'Preferences',
   components: {
-      flipcard
+    flipcard
   },
   data(){
        return {
            prefs:{},
-           loaded:false
-       }
+           loaded:false,
+           errors: "",
+           cardState:{
+               timeZone: false,
+               StartOfDay: false,
+               hours: false
+           }
+       } 
     },
     methods:{
         saveData: function(){
-            axios.post(`${process.env.VUE_APP_PREFS_URL}set/`, this.prefs)
+            return axios.post(`${process.env.VUE_APP_PREFS_URL}set/`, this.prefs)
+        },
+        checkTime: function(s){
+            return s.match(/^\d{2}:\d{2}$/)
+        },
+        validateProps: function(){
+            this.errors = []
+            let timeKeys = ['close_time', 'open_time','start_day']
+            if (timeKeys.every(key => this.checkTime(this.prefs[key]))){
+                this.errors = ""
+                return true
+            } else {
+                this.errors = "Times must be formated as HH:MM"
+                return false
+            }
+        },
+        showBack: function(e){
+            this.cardState[e.$el.id] = true
+        },
+        flipCard: function(e){
+            if(this.validateProps()){
+                this.saveData()
+                .then(() => this.cardState[e.$el.id] = false)
+            }
+
         }
     },
     created: function () {
@@ -86,6 +124,7 @@ export default {
         .then(res => {
             this.prefs = Object.assign({}, this.prefs, res.data)
             this.loaded = true
+            console.log(this.prefs)
         })
     },
     filters:{
@@ -98,10 +137,21 @@ export default {
             return `${hours}:${minutes} ${ampm}`
         }
     }
-
 }
 </script>
 <style scoped>
+    #errors{
+        display: none;
+        padding: 1em;
+        border: 2px solid firebrick;
+        width: 25em;
+        box-sizing: border-box;
+        margin:.5em;
+        background-color: white;
+    }
+    #errors.error{
+        display: block
+    }
     .hidden{
         display: none;
     }
@@ -139,6 +189,7 @@ export default {
         max-width: 8em;
         
     }
+    
    .onoffswitch {
     position: relative; width: 90px;
     -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;

@@ -6,15 +6,15 @@
                     <slot name="front"></slot>  
                 </div> 
                 <div class="cardFooter">
-                    <font-awesome-icon v-on:click="flip"  class="card-control" icon="edit" /> 
+                    <font-awesome-icon v-on:click="back"  class="card-control" icon="edit" /> 
                 </div>     
             </div>
-            <div class="back"  @cardflipped="flip">
+            <div class="back">
                 <div class="slotcontent">
                     <slot name="back"></slot>
                 </div>
                 <div class="cardFooter">
-                     <font-awesome-icon v-on:click="flipAndEmit" class="card-control" icon="undo" />
+                     <font-awesome-icon v-on:click="front" class="card-control" icon="undo" />
                 </div>
             </div>
         </div>
@@ -22,19 +22,22 @@
 </template>
 <script>
     export default {
-        props:[],
-        data(){
-            return{
-                isFlipped: false
+        props:{
+            isFlipped: {
+                default: false,
+                type: Boolean
             }
         },
+        data(){ return {
+
+        }
+        },
         methods: {          
-            flip(){         
-                this.isFlipped = !this.isFlipped
+            back(){ 
+                this.$emit("showBack", this)        
             },
-            flipAndEmit(){
-                this.$emit("cardflipped")
-                this.isFlipped = !this.isFlipped
+            front(){
+                this.$emit("showFront", this)
             }
         }
         
