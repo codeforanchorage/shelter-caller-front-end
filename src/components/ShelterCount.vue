@@ -30,7 +30,7 @@ export default {
     mixins:[allowedRoles],
     methods:{
         gotohistory(){
-            console.log(this.data.shelterID)
+           // console.log(this.data.shelterID)
         }
     },
     filters:{
@@ -50,7 +50,6 @@ export default {
         },
         percent(){
             if (this.data.bedcount == null) return ""
-            console.log(this.data.name, this.data.bedcount, this.data.capacity)
             return this.data.bedcount < 0 
             ? "100% capacity"
             : (((this.data.capacity - this.data.bedcount)/ this.data.capacity) * 100).toFixed(2) + '% capacity'       

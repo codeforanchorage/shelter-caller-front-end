@@ -124,7 +124,6 @@ export default {
         .then(res => {
             this.prefs = Object.assign({}, this.prefs, res.data)
             this.loaded = true
-            console.log(this.prefs)
         })
     },
     filters:{

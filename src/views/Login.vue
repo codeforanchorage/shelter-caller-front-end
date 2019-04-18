@@ -50,14 +50,12 @@ export default {
                 if(r.data.jwt){
                     auth.token =  r.data.jwt
                     auth.roles = r.data.roles
-                    //console.log("rols:", auth.roles)
                     this.$root.signIn()
                     this.$router.push('/')
                 }
                 })
             .catch(err => {
                 this.loading = false
-                console.log(err)
                 this.error = err.response.message
                 this.password = ''
                 e.target.reset() // brings placeholder text back in safari

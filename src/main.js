@@ -29,7 +29,6 @@ axios.interceptors.response.use(null, function (error) {
     })
 
 router.beforeEach((to, from, next) => {
-    console.log("to", to.matched)
     /* to.matched is an array becuase it's possible to create nested routes. 
      * the array will be in parent->child order. So long as each leaf child has 
      * a allowed roles, we only need to check it. (moot at the moment because we're no nesting routes)
@@ -39,7 +38,6 @@ router.beforeEach((to, from, next) => {
             next({ path: '/login' })
             return
          }
-         console.log(auth.roles, to.matched[to.matched.length - 1].meta.allowedRoles)
          if (!to.matched[to.matched.length - 1].meta.allowedRoles.some(role => auth.roles.includes(role))){
             next({ path: '/login' })
             return
