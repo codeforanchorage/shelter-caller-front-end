@@ -49,7 +49,7 @@ export default {
       this.draw()
     } , 
     watch:{
-        data: function(newData){
+        data: function(){
             this.draw()
         }
     } 

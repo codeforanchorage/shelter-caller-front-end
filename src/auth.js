@@ -18,8 +18,16 @@ class auth{
         this.loggedIn = true;
         this.user = this.getuser()
     }
+    set roles(roles){
+        // roles is an array of roles that detemines which routes and components we show this user
+        localStorage.setItem('roles', JSON.stringify(roles))
+    }
+    get roles(){
+        return JSON.parse(localStorage.getItem('roles'))
+    }
     logOut(){
         localStorage.removeItem('token')
+        localStorage.removeItem('roles')
         this.loggedIn = false
     }
     getuser(){

@@ -1,5 +1,6 @@
 <template>
-    <router-link tag="div" class="call" v-if="data" :to="{name: 'callhistory', params:{shelterid: data.id}}">
+    <!-- There's a current pull request on vue for a router-link disabled flag which will all removing the reproduced code -->
+    <router-link tag="div" class="call" v-if="data && hasRole('admin')"  :to="{name: 'callhistory', params:{shelterid: data.id}}">
         <h4>{{data.name}}</h4>
         <circlecount :percent="percent" :data="data"></circlecount>
         <div class='calldata'>
@@ -8,16 +9,25 @@
             Reported: {{data.time | toDate}}
         </div>
     </router-link>
+    <div v-else class="call disabled">
+        <h4>{{data.name}}</h4>
+        <circlecount :percent="percent" :data="data"></circlecount>
+        <div class='calldata'>
+            <span v-if="data.personcount">No. in Shelter: {{data.personcount}}</span><br />
+            {{percent}}<br />
+            Reported: {{data.time | toDate}}
+        </div>
+    </div>
 </template>
 <script>
 import circlecount from '@/components/CircleCount.vue'
-// const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-// const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+import {allowedRoles} from '../mixins/auth_mixins'
 
 export default {
     name: "shelterCount",
     props:['data'],
     components:{circlecount},
+    mixins:[allowedRoles],
     methods:{
         gotohistory(){
             console.log(this.data.shelterID)
@@ -61,6 +71,10 @@ export default {
 .call:hover{
     background-color: #ddd;
     cursor: pointer;
+}
+.call.disabled:hover{
+    cursor: auto;
+    background-color: white;
 }
 .count{
     width: 2em;

@@ -14,7 +14,7 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      meta: { requiresAuth: true },
+      meta: { requiresAuth: true, allowedRoles:['admin', 'visitor'] },
       component: Home
     },
     {
@@ -25,19 +25,19 @@ export default new Router({
     {
         path: '/shelters',
         name: 'shelters',
-        meta: { requiresAuth: true },
+        meta: { requiresAuth: true,  allowedRoles:['admin'] },
         component: () => import(/* webpackChunkName: "shelters" */ './views/Shelters.vue')
     },
     {
         path:'/callhistory/:shelterid',
         name: 'callhistory',
-        meta: { requiresAuth: true },
+        meta: { requiresAuth: true,  allowedRoles:['admin'] },
         component: CallHistory
     },
     {
         path:'/prefs',
         name: 'preferences',
-        meta: {requiresAuth: true},
+        meta: {requiresAuth: true,  allowedRoles:['admin'] },
         component: Prefs
     }
   ]

@@ -6,10 +6,10 @@
             <div class="navlink" v-if="loggedin">
                 <router-link :to="{name: 'home'}">Counts <font-awesome-icon icon="chart-bar" /></router-link>
             </div>
-            <div class="navlink" v-if="loggedin">
+            <div class="navlink" v-if="loggedin && hasRole('admin')">
                 <router-link :to="{name: 'shelters'}">Shelters <font-awesome-icon icon="bed" /> </router-link>
             </div>
-            <div class="navlink" v-if="loggedin">
+            <div class="navlink" v-if="loggedin && hasRole('admin')">
                 <router-link :to="{name: 'preferences'}">Prefs <font-awesome-icon icon="cogs" /> </router-link>
             </div>
             <div class="navlink" v-if="loggedin">
@@ -19,20 +19,17 @@
     </nav>
 </template>
 <script>
+    import {allowedRoles} from '../mixins/auth_mixins'
     export default {
         name: 'navbar',
         props: {
             msg: String
         },
+        mixins:[allowedRoles],
         methods: {
             signout(){
                 this.$root.signOut()
                 this.$router.push('/Login')
-            }
-        },
-        computed:{
-            loggedin() {
-                return this.$root.loggedIn
             }
         }
     }
