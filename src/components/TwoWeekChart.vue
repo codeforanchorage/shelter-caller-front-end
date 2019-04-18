@@ -20,6 +20,7 @@ export default {
             shelters.forEach((item, i, self) => {
                 let hue = 360 * i/self.length 
                 item.backgroundColor = `hsl(${hue},20%,70%)`
+                item.data = item.data.map(n => n < 0 ? 0 : n)
             })
             this.data.datasets = shelters
         })
