@@ -27,6 +27,7 @@ export default {
       }
     },
     mounted () {
+        
        // Overwriting base render method with actual data.
        const options =  { maintainAspectRatio: false, 
                           scales: {
@@ -36,14 +37,30 @@ export default {
                             yAxes: [{
                                 stacked: true
                             }]
-                        }
+                          },
+                          legend: {
+                            onClick: function(e, legendItem){
+                                let ch = this.chart
+                                let current_meta = ch.getDatasetMeta(legendItem.datasetIndex)
+                                ch.data.datasets.forEach((d, i) => {
+                                    if (i != legendItem.datasetIndex){
+                                        if (current_meta.hidden == false)
+                                            ch.getDatasetMeta(i).hidden = !ch.getDatasetMeta(i).hidden
+                                        else
+                                            ch.getDatasetMeta(i).hidden =true
+                                    }
+                                })
+                               current_meta.hidden = false
+                                ch.update()
+                            }
+                          }
+                        
                     }
        
        this.getcalls()
-       .then(() => this.renderChart(this.data, options))
+       .then(() => {this.renderChart(this.data, options); console.log(this.generateLegend());  })
     },
     created(){
-        
     }
 }
 </script>
