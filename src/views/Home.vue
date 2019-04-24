@@ -7,13 +7,8 @@
         <sheltercount :data='count'></sheltercount>
       </div>
     </div>
-    <div id="twoWeek">
-        <h4>Two Week Available Spaces</h4>
-        <div id="barScroll">     
-            <div id="bars">
-            <twoweekchart :height="300" :width="800" ></twoweekchart>
-            </div>
-        </div>
+    <div>
+        <barchart></barchart>        
     </div>
  </div>
  <div v-else id =loading>
@@ -29,8 +24,8 @@
 
 <script>
 // @ is an alias to /src
+import barchart from '@/components/BarChart.vue'
 import sheltercount from '@/components/ShelterCount.vue'
-import twoweekchart from '@/components/TwoWeekChart.vue'
 import axios from 'axios'
 
 export default {
@@ -46,7 +41,7 @@ export default {
   },
   components: {
     sheltercount,
-    twoweekchart
+    barchart
   },
   methods:{
       dayforward(){
@@ -86,7 +81,6 @@ export default {
         margin-top: 0;
         font-size: 1.25em;
         text-transform: uppercase;
-
     }
     #loading{
         text-align: center;
@@ -99,20 +93,6 @@ export default {
         color:lightgrey;
         cursor: pointer;
         
-    }
-    
-    #twoWeek h4{
-        padding: 0 1em;
-    }
-    #barScroll{
-        width: 100%;
-        overflow: scroll;
-        min-height: 500px;
-    }
-    #bars {
-        width: 100%;
-        height: 300px;
-        min-width: 700px;
     }
     #calls{
         display: flex;
