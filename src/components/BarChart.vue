@@ -1,7 +1,7 @@
 <template>
     <div id="twoWeek">
         <h4>Two Week Available Spaces </h4>
-        <h5>Average spaces/night: Past 14 days: {{two_week_average.toFixed(0)}} | Past 7 days: {{one_week_average.toFixed(0)}}</h5>
+        <h5>Average open spaces: Past 14 days: {{two_week_average.toFixed(0)}} | Past 7 days: {{one_week_average.toFixed(0)}}</h5>
         
         <div id="barScroll">     
             <div id="bars">
