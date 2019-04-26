@@ -5,7 +5,7 @@ export default {
     extends: Bar,
     props: ['data'],
     watch:{
-        data(){
+        data: function(){
             this.renderChart(this.data, this.options)
         }
     },
