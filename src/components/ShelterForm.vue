@@ -22,6 +22,7 @@
             <button type="submit"> <font-awesome-icon  class="card-control" icon="save" /></button>
             <font-awesome-icon v-on:click="confirmdelete" class="card-control" icon="trash-alt" />
             <input v-model.trim="shelterCopy.active" name="active" type="checkbox" > Active
+            <input v-model.trim="shelterCopy.visible" name="active" type="checkbox" > Visible
         </div>
         </form>
     </div>

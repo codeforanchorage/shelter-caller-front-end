@@ -3,7 +3,8 @@
         <h4>Two Week Available Spaces</h4>
         <p class="chartAverages">Filter: 
             <span v-bind:class="{selected: !filter_set}" @click="filterData()">All</span> | 
-            <span v-bind:class="{selected: filter_set == 'adult_general'}" @click="filterData('adult_general')">Adult General Shelters</span> 
+            <span v-bind:class="{selected: filter_set == 'adult_general'}" @click="filterData('adult_general')">Adult General Shelters</span> | 
+            <span v-bind:class="{selected: filter_set == 'adult_family'}" @click="filterData('adult_family')">Adult Family Shelters</span>  
         </p>
         <p class="chartAverages">Average Open Spaces: Past 14 Days: {{two_week_average.toFixed(0)}} | Past 7 Days: {{one_week_average.toFixed(0)}}</p>
         
@@ -30,7 +31,8 @@ export default {
             origin_data:{},
             filter_set: undefined,
             filter_sets: {
-                adult_general:["Bean's ECWS", "Brother Francis Shelter",  "Anchorage Gospel Rescue Mission", "Downtown Hope Center"]
+                adult_general:["Bean's ECWS", "Brother Francis Shelter",  "Anchorage Gospel Rescue Mission", "Downtown Hope Center"],
+                adult_family:["McKinnell House", "Clare House"]
             }
         }
     },

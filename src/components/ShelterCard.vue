@@ -2,13 +2,14 @@
     <div class="card card-flip">
         <div class="flip" v-bind:class="{ flipped: isFlipped }" >
             <div class = "front" v-bind:class="{ inactive: !shelter.active }">
-                <h3>{{shelter.name}}</h3>
+                <h3>{{shelter.name}}  <font-awesome-icon v-if="!shelter.visible" class="hIcon" icon="eye-slash" /></h3>
                 <p class="cardText">
                     <font-awesome-icon icon="phone" /> {{shelter.phone | phone}} <br />
                     <font-awesome-icon icon="id-card" /> {{shelter.login_id}} <font-awesome-icon icon="bed" style="margin-left:.4em" /> {{shelter.capacity}}
                 </p>
                 <p class="cardFooter">
                     <font-awesome-icon v-on:click="flip"  class="card-control" icon="edit" /> 
+                   
                 </p>
             </div>
             <shelterform class="back" :shelter="shelter" @cardflipped="flip" @delete="deleteshelter">
@@ -52,6 +53,11 @@
         font-weight: 300;
         font-size: 1.25em;
     }
+    h3 .hIcon{
+        font-size: .8em;
+        font-weight: 100;
+    }
+    
     .inactive {
         opacity: .25;
     }
