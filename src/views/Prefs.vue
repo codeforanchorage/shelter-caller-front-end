@@ -5,37 +5,48 @@
             {{errors}}
         </div>
         <!-- Set Time Zone -->
+        <div>
         <flipcard id="timeZone" @showFront="flipCard" @showBack="showBack" :isFlipped="cardState.timeZone">
-            <div slot="front">
+            <div slot="front"  class="flip">
                 <b>Timezone: {{prefs.timezone}}</b>
                 <p class="instruction">
                     All times will be interpreted as local to this zone.<br> It should be a zone from the <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">tz database list</a> such as "America/Anchorage".
                 </p>
             </div>
+            <div slot="frontfooter">
+                    <font-awesome-icon v-on:click="cardState.timeZone = true"  class="card-control" icon="edit" /> 
+            </div>  
+            
             <div slot="back">
                 <label for="timezone">Set Timezone: </label><br />
                 <input id="timezone" name="timezone" v-model="prefs.timezone">
             </div>
         </flipcard>
-  
+        </div>
         <!-- Set Start of Day -->
+        <div>
         <flipcard id="StartOfDay" @showFront="flipCard" @showBack="showBack" :isFlipped="cardState.StartOfDay">
-            <div slot="front">
+            <div slot="front"  class="flip">
                 <b>Start of Day: {{prefs.start_day | AMPM}}</b>
                 <p class="instruction">
                    All input after this time will be counted toward the following day
                 </p>
             </div>
+            <div slot="frontfooter">
+                <font-awesome-icon v-on:click="cardState.StartOfDay = true"  class="card-control" icon="edit" /> 
+            </div>   
+            
             <div slot="back">
                 <label for="start_day">Start of day: </label>
                 <input id="start_day" type="time" name="start_day"  class="time" v-model="prefs.start_day" required pattern="[0-9]{2}:[0-9]{2}">
 
             </div>
         </flipcard>
-
+        </div>
         <!-- Set hours prefs -->
+        <div>
         <flipcard id="hours" @showFront="flipCard" @showBack="showBack" :isFlipped="cardState.hours">
-            <div slot="front">
+            <div slot="front" class="flip">
                 <b>Start/Stop Times</b><br>
                 Current Status: {{prefs.enforce_hours ? "Enabled" : "Disabled"}}<br>
                 Open: {{prefs.open_time | AMPM}} — Close: {{prefs.close_time | AMPM}} 
@@ -43,6 +54,10 @@
                    If enabled, input from calls and texts will only be accepted between open and close times
                 </p>
             </div>
+            <div slot="frontfooter">
+                <font-awesome-icon v-on:click="cardState.hours = true"  class="card-control" icon="edit" /> 
+            </div>  
+            
             <div slot="back">
                
                 <div id ="switch">
@@ -66,6 +81,7 @@
             </div>
             </div>
         </flipcard>
+        </div>
     </div>
 </template>
 
@@ -139,6 +155,40 @@ export default {
 }
 </script>
 <style scoped>
+.cardFooter{
+        position: absolute;
+        box-sizing: border-box;
+        margin-bottom:0px;
+        height: 2em;
+        bottom: 0px;
+        width: 100%;
+        padding: .4em 1em;
+        background-color: #efefef;
+    }
+    .cardFooter button{
+        border: none;
+        text-transform: uppercase;
+        background-color: Transparent;
+        font-size: 1em;
+        width:3em;
+        outline: none;
+    }
+    .card-control{
+        margin-right: 1em;
+    }
+    .card-control:hover{
+        color:coral;
+        cursor: pointer;
+    }
+    .flip{      
+        border: 1px solid #ddd;
+        margin: 0;
+        min-width: 16em;
+        border-radius: 5px;
+        width:25em;
+        padding: 1em;
+        padding-bottom: 2.5em;
+    }
     #errors{
         display: none;
         padding: 1em;

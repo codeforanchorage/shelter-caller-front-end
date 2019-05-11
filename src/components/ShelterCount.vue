@@ -1,36 +1,43 @@
 <template>
     <!-- There's a current pull request on vue for a router-link disabled flag which will all removing the reproduced code -->
-    <router-link tag="div" class="call" v-if="data && hasRole('admin')"  :to="{name: 'callhistory', params:{shelterid: data.id}}">
+    <flipcard>
+    <div slot="front" class="call" v-if="data" >
         <h4>{{data.name}}</h4>
         <circlecount :percent="percent" :data="data"></circlecount>
         <div class='calldata'>
-            <span v-if="data.personcount">No. in Shelter: {{data.personcount}}</span><br />
-            {{percent}}<br />
-            Reported: {{data.time | toDate}}
-        </div>
-    </router-link>
-    <div v-else class="call disabled">
-        <h4>{{data.name}}</h4>
-        <circlecount :percent="percent" :data="data"></circlecount>
-        <div class='calldata'>
-            <span v-if="data.personcount">No. in Shelter: {{data.personcount}}</span><br />
-            {{percent}}<br />
-            Reported: {{data.time | toDate}}
+            <div class="footer_links" v-if="data && hasRole('admin')" >
+                 <font-awesome-icon v-on:click="flip"  class="card-control" icon="edit" /> <br />
+                 <router-link  :to="{name: 'callhistory', params:{shelterid: data.id}}">
+                    <font-awesome-icon v-on:click="flip"  class="card-control" icon="clipboard-list" /> 
+                 </router-link>
+            </div>
+            <div class="footer_data">
+                <span v-if="data.personcount">No. in Shelter: {{data.personcount}} <br /></span> 
+                {{percent}}<br v-if="percent" />
+                Reported: {{data.time | toDate}}
+            </div>
         </div>
     </div>
+    </flipcard>
+    
 </template>
 <script>
 import circlecount from '@/components/CircleCount.vue'
+import flipcard from '@/components/FlipCard.vue'
+
 import {allowedRoles} from '../mixins/auth_mixins'
 
 export default {
     name: "shelterCount",
     props:['data'],
-    components:{circlecount},
+    components:{circlecount, flipcard},
     mixins:[allowedRoles],
     methods:{
         gotohistory(){
            // console.log(this.data.shelterID)
+        },
+        flip(){
+            console.log("fliped")
         }
     },
     filters:{
@@ -58,6 +65,9 @@ export default {
 }
 </script>
 <style scoped>
+a{
+    color: dimgray;
+}
 .call{
     margin: 0 .5em .5em 0;
     padding: 0em 1em .5em 1em;
@@ -67,10 +77,7 @@ export default {
     min-width: 10em;
     background-color: white;
     }
-.call:hover{
-    background-color: #ddd;
-    cursor: pointer;
-}
+
 .call.disabled:hover{
     cursor: auto;
     background-color: white;
@@ -95,5 +102,17 @@ export default {
     text-align: left;
     margin-top:1.5em;
     line-height: 120%;
+    display: flex;
+    min-height: 4em;
+}
+.footer_links{
+    font-size: 1.4em;
+    min-width: 1.6em;
+    line-height: 140%;
+}
+.card-control:hover{
+    color:coral;
+    cursor: pointer;
+
 }
 </style>

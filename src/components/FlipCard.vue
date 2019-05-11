@@ -6,7 +6,7 @@
                     <slot name="front"></slot>  
                 </div> 
                 <div class="cardFooter">
-                    <font-awesome-icon v-on:click="back"  class="card-control" icon="edit" /> 
+                    <slot name="frontfooter"></slot>
                 </div>     
             </div>
             <div class="back">
@@ -43,19 +43,8 @@
         
     }
 </script>
-<style scoped>
-  
-    .flip{      
-        border: 1px solid #ddd;
-        margin: .5em;
-        min-width: 16em;
-        border-radius: 5px;
-        width:25em;
-    }
-    .slotcontent{
-        padding: 1em;
-        padding-bottom: 2.5em;
-    }
+<style scoped>    
+    
     .cardFooter{
         position: absolute;
         box-sizing: border-box;
@@ -66,6 +55,14 @@
         padding: .4em 1em;
         background-color: #efefef;
     }
+    .cardFooter button{
+        border: none;
+        text-transform: uppercase;
+        background-color: Transparent;
+        font-size: 1em;
+        width:3em;
+        outline: none;
+    }
     .card-control{
         margin-right: 1em;
     }
@@ -75,6 +72,7 @@
     }
     .card-flip {
         perspective: 1000px;
+        display: inline-block;
     }
     .flipped {
         transform: rotateY(180deg);
@@ -108,12 +106,5 @@
         width: 100%;
         height: 100%;
     }
-    .cardFooter button{
-        border: none;
-        text-transform: uppercase;
-        background-color: Transparent;
-        font-size: 1em;
-        width:3em;
-        outline: none;
-    }
+    
 </style>
