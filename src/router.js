@@ -23,6 +23,12 @@ export default new Router({
         component: Login
     },
     {
+      path: '/history/:datestring',
+      name: 'counthistory',
+      meta: { requiresAuth: true, allowedRoles:['admin', 'visitor'] },
+      component: Home
+    },
+    {
         path: '/shelters',
         name: 'shelters',
         meta: { requiresAuth: true,  allowedRoles:['admin'] },

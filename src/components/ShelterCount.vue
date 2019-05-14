@@ -51,8 +51,8 @@ export default {
     props:['data', 'day'],
     data(){
         return{
-            isflipped:false,
-            countInput:this.data.personcount,
+            isflipped: false,
+            countInput: this.data.personcount,
             errorText: undefined,
             loading: false
         }
@@ -107,6 +107,11 @@ export default {
             return this.data.bedcount < 0 
             ? "100% capacity"
             : (((this.data.capacity - this.data.bedcount)/ this.data.capacity) * 100).toFixed(2) + '% capacity'       
+        }
+    },
+    watch:{
+        'data.personcount'(){
+            this.countInput = this.data.personcount
         }
     }
 }

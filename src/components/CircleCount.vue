@@ -50,7 +50,6 @@ export default {
     } , 
     watch:{
         bedcount: function(){
-            console.log("drawing!")
             this.draw()
         }
     } 
