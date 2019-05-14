@@ -4,7 +4,7 @@
     <h2><font-awesome-icon class="arrow" icon="step-backward" v-on:click="dayback" /><span id="currentDate">{{date}}</span> <font-awesome-icon v-if="daysback" class="arrow" icon="step-forward" v-on:click="dayforward" /> </h2>
     <div id="calls">
       <div v-for="count in counts" v-bind:key="count.name">
-        <sheltercount :data='count'></sheltercount>
+        <sheltercount :data='count' :day='date' @newcount="updateshelter"></sheltercount>
       </div>
     </div>
     <div>
@@ -60,6 +60,12 @@ export default {
             this.loaded = true
         })
         .catch(() => this.error = "Error loading network data")
+      },
+      updateshelter(e){
+          let shelter = this.counts.find(c => c.id === e.shelterID)
+          shelter.bedcount = e.bedcount
+          shelter.personcount = e.personcount
+          console.log(shelter)
       }
   },
   created: function(){

@@ -58,7 +58,10 @@
                 return new Date(val).toLocaleString()
             },
             formatPhone(val){
-                return `(${val.slice(2,5)}) ${val.slice(5, 8)}-${val.slice(8)}`
+                return /^\+\d+$/.test(val) 
+                ? `(${val.slice(2,5)}) ${val.slice(5, 8)}-${val.slice(8)}`
+                : val
+               
             }
         },
         methods:{

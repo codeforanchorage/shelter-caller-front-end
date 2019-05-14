@@ -6,20 +6,23 @@
         </div>
         <!-- Set Time Zone -->
         <div>
-        <flipcard id="timeZone" @showFront="flipCard" @showBack="showBack" :isFlipped="cardState.timeZone">
-            <div slot="front"  class="flip">
+        <flipcard id="timeZone" @showFront="flipCard" @showBack="showBack" :isFlipped="cardState.timeZone" class="card">
+            <div slot="front" class="flip">
                 <b>Timezone: {{prefs.timezone}}</b>
                 <p class="instruction">
                     All times will be interpreted as local to this zone.<br> It should be a zone from the <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">tz database list</a> such as "America/Anchorage".
                 </p>
             </div>
-            <div slot="frontfooter">
+            <div slot="frontfooter" class="cardFooter">
                     <font-awesome-icon v-on:click="cardState.timeZone = true"  class="card-control" icon="edit" /> 
             </div>  
             
-            <div slot="back">
+            <div slot="back" class="flip">
                 <label for="timezone">Set Timezone: </label><br />
                 <input id="timezone" name="timezone" v-model="prefs.timezone">
+            </div>
+            <div slot="backfooter" class="cardFooter">
+                <font-awesome-icon v-on:click="flipCard('timeZone')" class="card-control" icon="undo" />
             </div>
         </flipcard>
         </div>
@@ -32,15 +35,18 @@
                    All input after this time will be counted toward the following day
                 </p>
             </div>
-            <div slot="frontfooter">
+            <div slot="frontfooter" class="cardFooter">
                 <font-awesome-icon v-on:click="cardState.StartOfDay = true"  class="card-control" icon="edit" /> 
             </div>   
             
-            <div slot="back">
+            <div slot="back" class="flip">
                 <label for="start_day">Start of day: </label>
                 <input id="start_day" type="time" name="start_day"  class="time" v-model="prefs.start_day" required pattern="[0-9]{2}:[0-9]{2}">
-
             </div>
+            <div slot="backfooter" class="cardFooter">
+                <font-awesome-icon v-on:click="flipCard('StartOfDay')" class="card-control" icon="undo" />
+            </div>
+          
         </flipcard>
         </div>
         <!-- Set hours prefs -->
@@ -54,12 +60,11 @@
                    If enabled, input from calls and texts will only be accepted between open and close times
                 </p>
             </div>
-            <div slot="frontfooter">
+            <div slot="frontfooter" class="cardFooter">
                 <font-awesome-icon v-on:click="cardState.hours = true"  class="card-control" icon="edit" /> 
             </div>  
             
-            <div slot="back">
-               
+            <div slot="back" class="flip"> 
                 <div id ="switch">
                     <div class="onoffswitch">
                         <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" v-model="prefs.enforce_hours">
@@ -70,16 +75,20 @@
                     </div>
                 </div>
                 <div class="controls">
-                <div class="times">
-                    <label for="open_time">open</label><br>
-                    <input id="open_time" class="time" type="time" name="open_time"  v-model="prefs.open_time" required >
-                </div>
-                <div class="times">
-                    <label for="close_time">close</label><br>
-                    <input id="close_time" class="time" type="time" name="close_time" v-model="prefs.close_time" required >
+                    <div class="times">
+                        <label for="open_time">open</label><br>
+                        <input id="open_time" class="time" type="time" name="open_time"  v-model="prefs.open_time" required >
+                    </div>
+                    <div class="times">
+                        <label for="close_time">close</label><br>
+                        <input id="close_time" class="time" type="time" name="close_time" v-model="prefs.close_time" required >
+                    </div>
                 </div>
             </div>
+            <div slot="backfooter" class="cardFooter">
+                <font-awesome-icon v-on:click="flipCard('hours')" class="card-control" icon="undo" />
             </div>
+            
         </flipcard>
         </div>
     </div>
@@ -127,10 +136,10 @@ export default {
         showBack: function(e){
             this.cardState[e.$el.id] = true
         },
-        flipCard: function(e){
+        flipCard: function(cardName){
             if(this.validateProps()){
                 this.saveData()
-                .then(() => this.cardState[e.$el.id] = false)
+                .then(() => this.cardState[cardName] = false)
             }
 
         }
@@ -155,15 +164,17 @@ export default {
 }
 </script>
 <style scoped>
-.cardFooter{
-        position: absolute;
+   .card{
+       margin:.5em .75em;
+   }
+    .cardFooter{
         box-sizing: border-box;
         margin-bottom:0px;
         height: 2em;
         bottom: 0px;
         width: 100%;
         padding: .4em 1em;
-        background-color: #efefef;
+       /* background-color: #efefef;*/
     }
     .cardFooter button{
         border: none;
@@ -181,13 +192,14 @@ export default {
         cursor: pointer;
     }
     .flip{      
-        border: 1px solid #ddd;
         margin: 0;
+        box-sizing: border-box;
         min-width: 16em;
+        height: 100%;
         border-radius: 5px;
         width:25em;
         padding: 1em;
-        padding-bottom: 2.5em;
+        /*background-color: #fff;*/
     }
     #errors{
         display: none;
@@ -218,13 +230,7 @@ export default {
         width: 25em;
         padding: 1em;
     }
-    .pref-pane{
-        width: 25em;
-        padding: 1em ;
-        border: 1px solid #ddd;
-        border-radius: 15px;
-        margin: .5em;
-    }
+   
     .controls {
         display: flex;
     }

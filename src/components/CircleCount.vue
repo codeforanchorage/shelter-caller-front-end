@@ -6,7 +6,7 @@
 
 <script>
 export default {
-    props:['data'],
+    props:['bedcount', 'capacity'],
     data(){
         return {
             ctx: null,
@@ -14,10 +14,10 @@ export default {
     },
     methods:{
         draw(){
-            let countText = this.data.bedcount == null 
+            let countText = this.bedcount == null 
                 ? '-' 
-                : this.data.bedcount < 0 ? 0 : this.data.bedcount
-            let stop =  this.data.bedcount == null ? 0: (this.data.capacity - this.data.bedcount)/this.data.capacity
+                : this.bedcount < 0 ? 0 : this.bedcount
+            let stop =  this.bedcount == null ? 0: (this.capacity - this.bedcount)/this.capacity
 
             let w = this.$refs['the_canvas'].width
             let h = this.$refs['the_canvas'].height
@@ -49,7 +49,8 @@ export default {
       this.draw()
     } , 
     watch:{
-        data: function(){
+        bedcount: function(){
+            console.log("drawing!")
             this.draw()
         }
     } 

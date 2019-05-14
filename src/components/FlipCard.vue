@@ -1,20 +1,16 @@
 <template>
-    <div class="card card-flip">
+    <div class="card">
         <div class="flip" v-bind:class="{ flipped: isFlipped }" >
             <div class = "front">
-                <div class="slotcontent">
-                    <slot name="front"></slot>  
-                </div> 
-                <div class="cardFooter">
+                <slot name="front"></slot>  
+                <div class="footer">
                     <slot name="frontfooter"></slot>
                 </div>     
             </div>
             <div class="back">
-                <div class="slotcontent">
-                    <slot name="back"></slot>
-                </div>
-                <div class="cardFooter">
-                     <font-awesome-icon v-on:click="front" class="card-control" icon="undo" />
+                <slot name="back"></slot>
+                <div class="footer">
+                     <slot name="backfooter"></slot>
                 </div>
             </div>
         </div>
@@ -28,10 +24,6 @@
                 type: Boolean
             }
         },
-        data(){ return {
-
-        }
-        },
         methods: {          
             back(){ 
                 this.$emit("showBack", this)        
@@ -39,45 +31,18 @@
             front(){
                 this.$emit("showFront", this)
             }
-        }
-        
+        }  
     }
 </script>
 <style scoped>    
-    
-    .cardFooter{
-        position: absolute;
-        box-sizing: border-box;
-        margin-bottom:0px;
-        height: 2em;
-        bottom: 0px;
-        width: 100%;
-        padding: .4em 1em;
-        background-color: #efefef;
-    }
-    .cardFooter button{
-        border: none;
-        text-transform: uppercase;
-        background-color: Transparent;
-        font-size: 1em;
-        width:3em;
-        outline: none;
-    }
-    .card-control{
-        margin-right: 1em;
-    }
-    .card-control:hover{
-        color:coral;
-        cursor: pointer;
-    }
-    .card-flip {
+    .card {
         perspective: 1000px;
         display: inline-block;
     }
+   
     .flipped {
         transform: rotateY(180deg);
-    }
-  
+    }  
     .flip {
         transition: 0.6s;
         transform-style: preserve-3d;
@@ -85,17 +50,22 @@
         -moz-transform-style: preserve-3d;
         position: relative;
     }
-
     .front, .back {
+        display:flex;
+        flex-direction: column;
+        justify-content:space-between;
         backface-visibility: hidden;
         -webkit-backface-visibility: hidden;
         -moz-backface-visibility: hidden;
         top: 0;
         left: 0;
-        background-color: #fdfdfd;
-        
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background-color: white;
     }
-    
+    .footer{
+        background-color:#efefef;
+    }
     .front {
         z-index: 2;
         transform: rotateY(0deg);
