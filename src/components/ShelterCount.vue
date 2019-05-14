@@ -1,11 +1,9 @@
 <template>
-    <!-- There's a current pull request on vue for a router-link disabled flag which will all removing the reproduced code -->
     <flipcard :isFlipped="isflipped" class="card">
         <div slot="front" class="call" v-if="data" >
             <h4>{{data.name}}</h4>
             <circlecount :capacity="data.capacity" :bedcount="data.bedcount"></circlecount>
-            <div class='calldata'>
-                
+            <div class='calldata'>        
                 <div class="footer_data">
                     <span v-if="data.personcount">No. in Shelter: {{data.personcount}} <br /></span> 
                     {{percent}}<br v-if="percent" />
@@ -19,7 +17,7 @@
                         <font-awesome-icon  class="card-control" icon="clipboard-list" /> 
             </router-link>
         </div>
-        <div slot="back" class="call">
+        <div slot="back" class="call" v-if="hasRole('admin')">
             <h5>Edit Count <br />{{data.name}}</h5>
             <p v-if="!errorText">
                 <b>Reported count: {{data.personcount || '-'}}</b><br>
@@ -34,7 +32,7 @@
             </div>
             
         </div>
-        <div slot="backfooter" class="cardFooter">
+        <div slot="backfooter" class="cardFooter" v-if="hasRole('admin')">
                 <font-awesome-icon v-on:click="flipCard()" class="card-control" icon="undo" />
                 <font-awesome-icon v-on:click="saveCount()" class="card-control" icon="save" />
         </div>
@@ -55,19 +53,17 @@ export default {
         return{
             isflipped:false,
             countInput:this.data.personcount,
-            errorText:undefined,
+            errorText: undefined,
             loading: false
         }
     },
     components:{circlecount, flipcard},
     mixins:[allowedRoles],
     methods:{
-        gotohistory(){
-           // console.log(this.data.shelterID)
-        },
         flipCard(){
             this.countInput = this.data.personcount
             this.isflipped = false;
+            this.errorText = undefined;
         },
         saveCount(){
             if (this.loading){
@@ -80,17 +76,16 @@ export default {
                 day: this.day
             }
             axios.post(`${process.env.VUE_APP_API_URL}setcount/`, submited)
-                .then(res => {
-                    this.loading = false
-                    if (!res.data.error) {
-                       this.errorText = undefined;
-                       this.$emit('newcount',res.data.counts)
-                       this.flipCard()
-                    } else {
-                        this.errorText = res.data.error
-                    }
-                })
-
+            .then(res => {
+                this.loading = false
+                if (!res.data.error) {
+                    this.errorText = undefined;
+                    this.$emit('newcount',res.data.counts)
+                    this.flipCard()
+                } else {
+                    this.errorText = res.data.error
+                }
+            })
         }
     },
     filters:{
@@ -98,7 +93,6 @@ export default {
             if(!value) return "No Report"
             let d = new Date(value)
             return `${d.getHours()}:${d.getMinutes().toString().padStart(2, '0')}`
-
         }
     },
     computed:{
