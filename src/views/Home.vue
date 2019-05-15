@@ -113,7 +113,7 @@ export default {
         text-align: center;
     }
     .date_input:focus {outline:none!important;}
-    .calendar{
+    div.calendar{
         background-color: dimgray;
     }
     .calendar span.cell.selected{
@@ -122,7 +122,7 @@ export default {
     .calendar span.cell.disabled{
         color: #555;
     }
-    .calendar .cell:not(.blank):not(.disabled).day:hover{
+    div.calendar .cell:not(.blank):not(.disabled).day:hover{
         border-color: coral;
     }
 </style>

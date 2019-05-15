@@ -37,12 +37,16 @@
 <style scoped>    
     .card {
         perspective: 1000px;
+        transform-style: preserve-3d;
         display: inline-block;
     }
-   
-    .flipped {
+    /* these need to be flipped independently for IE */
+    .flipped .back{
+        transform: rotateY(0deg);
+    }
+    .flipped .front{
         transform: rotateY(180deg);
-    }  
+    } 
     .flip {
         transition: 0.6s;
         transform-style: preserve-3d;
@@ -52,6 +56,8 @@
     }
     .front, .back {
         display:flex;
+        transition: 0.6s;
+        transform-style: preserve-3d;
         flex-direction: column;
         justify-content:space-between;
         backface-visibility: hidden;
@@ -67,14 +73,16 @@
         background-color:#efefef;
     }
     .front {
+        position: relative;
         z-index: 2;
         transform: rotateY(0deg);
     }
     .back {
-        transform: rotateY(180deg);
+        transform: rotateY(-180deg);
         position: absolute;
         width: 100%;
         height: 100%;
+        top:0;
+        bottom: 0;
     }
-    
 </style>
