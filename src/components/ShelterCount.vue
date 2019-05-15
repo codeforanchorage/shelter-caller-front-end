@@ -33,8 +33,8 @@
             
         </div>
         <div slot="backfooter" class="cardFooter" v-if="hasRole('admin')">
-                <font-awesome-icon v-on:click="flipCard()" class="card-control" icon="undo" />
-                <font-awesome-icon v-on:click="saveCount()" class="card-control" icon="save" />
+            <font-awesome-icon v-on:click="flipCard()" class="card-control" icon="undo" />
+            <font-awesome-icon v-on:click="saveCount()" class="card-control" icon="save" />
         </div>
     </flipcard>
     

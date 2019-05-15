@@ -74,8 +74,9 @@ export default {
       this.getcalls()
   },
   watch: {
-    '$route.params': function () {
-      this.getcalls()
+      '$route': function () {
+          this.datestring = this.$route.params.datestring
+          this.getcalls()
     }
   },
 
