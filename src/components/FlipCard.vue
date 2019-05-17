@@ -38,6 +38,9 @@
     .card {
         perspective: 1000px;
         transform-style: preserve-3d;
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+
         display: inline-block;
     }
     /* these need to be flipped independently for IE */
@@ -58,6 +61,8 @@
         display:flex;
         transition: 0.6s;
         transform-style: preserve-3d;
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
         flex-direction: column;
         justify-content:space-between;
         backface-visibility: hidden;

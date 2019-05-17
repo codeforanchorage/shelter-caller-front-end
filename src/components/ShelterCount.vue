@@ -2,7 +2,7 @@
     <flipcard :isFlipped="isflipped" class="card">
         <div slot="front" class="call" v-if="data" >
             <h4>{{data.name}}</h4>
-            <circlecount :capacity="data.capacity" :bedcount="data.bedcount"></circlecount>
+            <circlecount :capacity="data.capacity" :bedcount="data.bedcount" class="circle_div"></circlecount>
             <div class='calldata'>        
                 <div class="footer_data">
                     <span v-if="data.personcount">No. in Shelter: {{data.personcount}} <br /></span> 
@@ -200,6 +200,11 @@ input {
     font-size: 3.5em;
     font-weight: 800;
     color:dimgray;
+}
+.circle_div{
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
 }
 input:focus{
     outline: none;
