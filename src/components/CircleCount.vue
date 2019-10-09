@@ -17,7 +17,13 @@ export default {
             let countText = this.bedcount == null 
                 ? '-' 
                 : this.bedcount < 0 ? 0 : this.bedcount
-            let stop =  this.bedcount == null ? 0: (this.capacity - this.bedcount)/this.capacity
+            let stop;
+            if (this.capacity === undefined) {
+               stop = 1;               
+            } else {
+               stop =  this.bedcount == null ? 0: (this.capacity - this.bedcount)/this.capacity
+            }
+            console.log(stop)
 
             let w = this.$refs['the_canvas'].width
             let h = this.$refs['the_canvas'].height

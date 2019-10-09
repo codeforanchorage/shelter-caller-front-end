@@ -79,7 +79,6 @@
     }
     .front {
         position: relative;
-        z-index: 2;
         transform: rotateY(0deg);
     }
     .back {

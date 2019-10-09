@@ -14,7 +14,7 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      meta: { requiresAuth: true, allowedRoles:['admin', 'visitor'] },
+      meta: { requiresAuth: true, allowedRoles:['admin', 'visitor', 'public'] },
       component: Home
     },
     {
@@ -25,7 +25,7 @@ export default new Router({
     {
       path: '/history/:datestring',
       name: 'counthistory',
-      meta: { requiresAuth: true, allowedRoles:['admin', 'visitor'] },
+      meta: { requiresAuth: true, allowedRoles:['admin', 'visitor', 'public'] },
       component: Home
     },
     {
