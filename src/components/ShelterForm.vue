@@ -1,3 +1,7 @@
+<!--
+   This is the form used for the flip side of cards. It is different from the 
+   form used for brand new shelters.
+-->
 <template>
     <div class="back">
         <div id="confirm" v-bind:class="{showconfirm: showConfirm}">
@@ -10,7 +14,10 @@
                 <font-awesome-icon icon="home" class="formicon" /><input v-model.trim="shelterCopy.name" name="name" placeholder="Shelter Name" required>
             </div>
             <div class="formgroup">
-                <font-awesome-icon icon="phone" class="formicon" /> <the-mask mask="+1 (###) ###-####" v-model="shelterCopy.phone" type="tel" name="phone" placeholder="+1 (907) 555-1212" required pattern="\+1\s\([0-9]{3}\)\s[0-9]{3}-[0-9]{4}"></the-mask>
+                <font-awesome-icon icon="info" class="formicon" /><input v-model.trim="shelterCopy.description" name="description" placeholder="Description" >
+            </div>
+            <div class="formgroup">
+                <font-awesome-icon icon="phone" class="formicon" /> <the-mask mask="+1 (###) ###-####" v-model="shelterCopy.phone" type="tel" name="phone" placeholder="+1 (907) 555-1212"  pattern="(\+1\s\([0-9]{3}\)\s[0-9]{3}-[0-9]{4})?"></the-mask>
             </div>
             <div class="formgroup">
                 <font-awesome-icon icon="id-card" class="formicon" /> <input v-model.trim="shelterCopy.login_id" name="login_id" placeholder="login id" required pattern="[0-9]+">
@@ -122,6 +129,7 @@
     }
     input{
         padding: 10px;
+        height: 17px;
         outline: none;
         background-color: #f6f6f6;
         border: none;
@@ -132,6 +140,9 @@
     }
     input:invalid{
         background-color:#f5dfe2;
+    }
+    input[type='checkbox']{
+       height: auto;
     }
     .formicon{
         width: 2em;

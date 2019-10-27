@@ -2,11 +2,12 @@
     <div class="card card-flip">
         <div class="flip" v-bind:class="{ flipped: isFlipped }" >
             <div class = "front" v-bind:class="{ inactive: !shelter.active }">
-                <h3>{{shelter.name}}  <font-awesome-icon v-if="!shelter.visible" class="hIcon" icon="eye-slash" /></h3>
-                <p class="cardText">
-                    <font-awesome-icon icon="phone" /> {{shelter.phone | phone}} <br />
-                    <font-awesome-icon icon="id-card" /> {{shelter.login_id}} <font-awesome-icon icon="bed" style="margin-left:.4em" /> {{shelter.capacity}}
-                </p>
+                <h3><font-awesome-icon v-if="!shelter.visible" class="hIcon" icon="eye-slash" /> {{shelter.name}} </h3>
+                <div class="cardText">
+                    <div><font-awesome-icon icon="info" /> {{shelter.description}}</div>
+                    <div><font-awesome-icon icon="phone" /> {{shelter.phone | phone}} </div>
+                    <div><font-awesome-icon icon="id-card" /> {{shelter.login_id}} <font-awesome-icon icon="bed" style="margin-left:.4em" /> {{shelter.capacity}}</div>
+                </div>
                 <p class="cardFooter">
                     <font-awesome-icon v-on:click="flip"  class="card-control" icon="edit" /> 
                    
@@ -40,7 +41,9 @@
         },
         filters:{
             phone:function(value){
-                return `+1 (${value.slice(0, 3)}) ${value.slice(3, 6)}-${value.slice(6, 10)}`
+               return value
+                  ? `+1 (${value.slice(0, 3)}) ${value.slice(3, 6)}-${value.slice(6, 10)}`
+                  : "No number — will not be called"
             }
         }
     }
@@ -52,12 +55,14 @@
         background-color: #efefef;
         font-weight: 300;
         font-size: 1.25em;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
     }
     h3 .hIcon{
         font-size: .8em;
         font-weight: 100;
     }
-    
     .inactive {
         opacity: .25;
     }
@@ -73,6 +78,14 @@
         margin-top:.5em;
         padding: 0em 1em;
         line-height: 200%;
+    }
+    .cardText div {
+       white-space: nowrap;
+       text-overflow: ellipsis;
+       overflow: hidden;
+    }
+    .cardText svg{
+       width: 1.5em;
     }
     .cardFooter{
         margin-bottom:0px;

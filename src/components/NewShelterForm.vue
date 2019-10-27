@@ -1,3 +1,6 @@
+<!--
+   This is the form the is used when a new shelter is added.
+-->
 <template>
     <div class="new-shelter">
 
@@ -7,7 +10,7 @@
                 <font-awesome-icon icon="home" class="formicon" /><input v-model.trim="shelter.name" name="name" placeholder="Shelter Name" required>
             </div>
             <div class="formgroup">
-                <font-awesome-icon icon="phone" class="formicon" /> <the-mask mask="+1 (###) ###-####" v-model="shelter.phone" type="tel" name="phone" placeholder="+1 (907) 555-1212" required pattern="\+1\s\([0-9]{3}\)\s[0-9]{3}-[0-9]{4}"></the-mask>
+                <font-awesome-icon icon="phone" class="formicon" /> <the-mask mask="+1 (###) ###-####" v-model="shelter.phone" type="tel" name="phone" placeholder="+1 (907) 555-1212"  pattern="\+1\s\([0-9]{3}\)\s[0-9]{3}-[0-9]{4}"></the-mask>
             </div>
             <div class="formgroup">
                 <font-awesome-icon icon="id-card" class="formicon" /> <input v-model.trim="shelter.login_id" name="login_id" placeholder="login id" required pattern="[0-9]+">

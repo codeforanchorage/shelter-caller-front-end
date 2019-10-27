@@ -2,6 +2,7 @@
     <flipcard :isFlipped="isflipped" class="card">
         <div slot="front" class="call" v-if="data" >
             <h4>{{data.name}}</h4>
+            <!-- <div class="description">{{data.description}}</div> -->
             <circlecount :capacity="data.capacity" :bedcount="data.bedcount" class="circle_div"></circlecount>
             <div class='calldata'>        
                 <div class="footer_data">
@@ -122,6 +123,18 @@ export default {
 
 h5 {
     text-transform:uppercase;
+}
+h4 {
+   margin-bottom: 10px;
+}
+.description {
+   max-width: 250px;
+   display:inline-block;
+   margin: 0 auto;
+   font-size: .875em;
+   height: 2.5em;
+   overflow:hidden;
+   text-overflow:ellipsis; 
 }
 .error {
     padding:.5em;
