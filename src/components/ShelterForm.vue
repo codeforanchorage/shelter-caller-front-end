@@ -143,6 +143,7 @@
     }
     input[type='checkbox']{
        height: auto;
+       min-width: auto;
     }
     .formicon{
         width: 2em;
