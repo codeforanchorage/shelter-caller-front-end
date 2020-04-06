@@ -6,7 +6,7 @@
 
 <script>
 export default {
-    props:['bedcount', 'capacity'],
+    props:['personcount', 'capacity'],
     data(){
         return {
             ctx: null,
@@ -14,14 +14,12 @@ export default {
     },
     methods:{
         draw(){
-            let countText = this.bedcount == null 
-                ? '-' 
-                : this.bedcount < 0 ? 0 : this.bedcount
+            let countText = this.personcount 
             let stop;
-            if (this.capacity === undefined) {
+            if (!this.capacity || this.capacity > this.personcount ) {
                stop = 1;               
             } else {
-               stop =  this.bedcount == null ? 0: (this.capacity - this.bedcount)/this.capacity
+               stop = this.personcount/this.capacity
             }
             console.log(stop)
 

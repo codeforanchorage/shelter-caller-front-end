@@ -3,10 +3,10 @@
         <div slot="front" class="call" v-if="data" >
             <h4>{{data.name}}</h4>
             <!-- <div class="description">{{data.description}}</div> -->
-            <circlecount :capacity="data.capacity" :bedcount="data.bedcount" class="circle_div"></circlecount>
+            <circlecount :capacity="data.capacity" :personcount="data.personcount" class="circle_div"></circlecount>
             <div class='calldata'>        
                 <div class="footer_data">
-                    <span v-if="data.personcount">No. in Shelter: {{data.personcount}} <br /></span> 
+                    <span v-if="data.personcount">Space Available: {{ data.bedcount | clamptoZerow }} <br /></span> 
                     {{percent}}<br v-if="percent" />
                     Reported: {{data.time | toDate}}
                 </div>
@@ -94,6 +94,9 @@ export default {
             if(!value) return "No Report"
             let d = new Date(value)
             return `${d.getHours()}:${d.getMinutes().toString().padStart(2, '0')}`
+        },
+        clamptoZerow: function(lower){
+           return Math.max(0, lower)
         }
     },
     computed:{
