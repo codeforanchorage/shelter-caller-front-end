@@ -16,10 +16,10 @@ export default {
         draw(){
             let countText = this.personcount 
             let stop;
-            if (!this.capacity || this.capacity > this.personcount ) {
+            if (!this.capacity || this.capacity < this.personcount ) {
                stop = 1;               
             } else {
-               stop = this.personcount/this.capacity
+               stop =  this.personcount / this.capacity
             }
             console.log(stop)
 
