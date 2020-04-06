@@ -14,7 +14,7 @@ export default {
     },
     methods:{
         draw(){
-            let countText = this.personcount 
+            let countText = this.personcount || '-'
             let stop;
             if (!this.capacity || this.capacity < this.personcount ) {
                stop = 1;               
@@ -53,7 +53,7 @@ export default {
       this.draw()
     } , 
     watch:{
-        bedcount: function(){
+        personcount: function(){
             this.draw()
         }
     } 
