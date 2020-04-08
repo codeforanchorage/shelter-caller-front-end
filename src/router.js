@@ -14,7 +14,7 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      meta: { requiresAuth: true, allowedRoles:['admin', 'visitor', 'public'] },
+      meta: { requiresAuth: false },
       component: Home
     },
     {

@@ -37,7 +37,7 @@
 import barchart from '@/components/BarChart.vue'
 import sheltercount from '@/components/ShelterCount.vue'
 import axios from 'axios'
-import Datepicker from 'vuejs-datepicker';
+import Datepicker from 'vuejs-datepicker'
 
 export default {
   name: 'home',

@@ -1,12 +1,12 @@
 <template>
     <div id="twoWeek">
-        <h4>Two Week Available Spaces</h4>
+        <h4>Two Week Occupancy</h4>
         <p class="chartAverages">Filter: 
             <span v-bind:class="{selected: !filter_set}" @click="filterData()">All</span> | 
             <span v-bind:class="{selected: filter_set == 'adult_general'}" @click="filterData('adult_general')">Adult General Shelters</span> | 
             <span v-bind:class="{selected: filter_set == 'adult_family'}" @click="filterData('adult_family')">Adult Family Shelters</span>  
         </p>
-        <p class="chartAverages">Average Open Spaces: Past 14 Days: {{two_week_average.toFixed(0)}} | Past 7 Days: {{one_week_average.toFixed(0)}}</p>
+        <p class="chartAverages">Average Occupancy: Past 14 Days: {{two_week_average.toFixed(0)}} | Past 7 Days: {{one_week_average.toFixed(0)}}</p>
         
         <div id="barScroll">     
             <div id="bars">

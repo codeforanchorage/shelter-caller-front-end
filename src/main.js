@@ -6,10 +6,10 @@ import axios from 'axios'
 
 /* Install font-awesome icons */
 import { library } from '@fortawesome/fontawesome-svg-core'
-import {faClipboardList, faInfo, faBed, faCogs, faEdit, faChartBar, faIdCard, faPhone, faHome, faUndo, faSave, faTrashAlt, faStepForward, faStepBackward, faExclamationCircle, faSignOutAlt, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
+import {faClipboardList, faInfo, faBed, faCogs, faEdit, faChartBar, faIdCard, faPhone, faHome, faUndo, faSave, faTrashAlt, faStepForward, faStepBackward, faExclamationCircle, faSignOutAlt,faSignInAlt, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add([faClipboardList, faInfo, faBed, faCogs, faEdit, faChartBar, faIdCard, faPhone, faHome, faUndo, faSave, faTrashAlt, faStepForward, faStepBackward, faExclamationCircle, faSignOutAlt, faEyeSlash])
+library.add([faClipboardList, faInfo, faBed, faCogs, faEdit, faChartBar, faIdCard, faPhone, faHome, faUndo, faSave, faTrashAlt, faStepForward, faStepBackward, faExclamationCircle, faSignOutAlt,faSignInAlt, faEyeSlash])
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false

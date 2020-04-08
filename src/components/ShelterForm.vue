@@ -28,8 +28,9 @@
             <font-awesome-icon v-on:click="flip" class="card-control" icon="undo" />
             <button type="submit"> <font-awesome-icon  class="card-control" icon="save" /></button>
             <font-awesome-icon v-on:click="confirmdelete" class="card-control" icon="trash-alt" />
-            <input v-model.trim="shelterCopy.active" name="active" type="checkbox" > Active
-            <input v-model.trim="shelterCopy.visible" name="active" type="checkbox" > Visible
+            <input v-model.trim="shelterCopy.active" name="active" type="checkbox" > Act
+            <input v-model.trim="shelterCopy.visible" name="active" type="checkbox" > Vis
+            <input v-model.trim="shelterCopy.public" name="active" type="checkbox" > Pub
         </div>
         </form>
     </div>
