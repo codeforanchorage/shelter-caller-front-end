@@ -6,7 +6,7 @@
             <circlecount :capacity="data.capacity" :personcount="data.personcount" class="circle_div"></circlecount>
             <div class='calldata'>        
                 <div class="footer_data">
-                    <span v-if="data.personcount">Space Available: {{ data.bedcount | clamptoZerow }} <br /></span> 
+                    <span v-if="data.personcount">Space Available: {{ data.bedcount | clamptoZero }} <br /></span> 
                     {{percent}}<br v-if="percent" />
                     Reported: {{data.time | toDate}}
                 </div>
@@ -95,7 +95,7 @@ export default {
             let d = new Date(value)
             return `${d.getHours()}:${d.getMinutes().toString().padStart(2, '0')}`
         },
-        clamptoZerow: function(lower){
+        clamptoZero: function(lower){
            return Math.max(0, lower)
         }
     },

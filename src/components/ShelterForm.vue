@@ -26,11 +26,11 @@
         
         <div class="formFooter">
             <font-awesome-icon v-on:click="flip" class="card-control" icon="undo" />
-            <button type="submit"> <font-awesome-icon  class="card-control" icon="save" /></button>
-            <font-awesome-icon v-on:click="confirmdelete" class="card-control" icon="trash-alt" />
-            <input v-model.trim="shelterCopy.active" name="active" type="checkbox" > Act
-            <input v-model.trim="shelterCopy.visible" name="active" type="checkbox" > Vis
-            <input v-model.trim="shelterCopy.public" name="active" type="checkbox" > Pub
+            <button type="submit" title="Save changes"> <font-awesome-icon  class="card-control" icon="save" /></button>
+            <font-awesome-icon v-on:click="confirmdelete" title="Delete Shelter" class="card-control" icon="trash-alt" />
+            <input v-model.trim="shelterCopy.active" title="Active: Determines if shelter is called" name="active" type="checkbox" > Act
+            <input v-model.trim="shelterCopy.visible" title="Visible: Determines if shelter appears in the dashboard" name="visible" type="checkbox" > Vis
+            <input v-model.trim="shelterCopy.public" title="Public: Determines if shelter appears in the dashboard when not logged in " name="public" type="checkbox" > Pub
         </div>
         </form>
     </div>

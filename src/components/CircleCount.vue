@@ -25,15 +25,18 @@ export default {
 
             let w = this.$refs['the_canvas'].width
             let h = this.$refs['the_canvas'].height
+            let cx = w/2
+            let cy = h/2
+            let r = 54
             this.ctx.clearRect(0, 0, w, h );
             this.ctx.fillStyle = "#666";
             this.ctx.beginPath();
-            this.ctx.arc(w/2, h/2, 50, 0, Math.PI * 2, true);
+            this.ctx.arc(cx, cy, 50, 0, Math.PI * 2, true);
             this.ctx.fill();
             this.ctx.fillStyle = "#ccc"
             this.ctx.font = 'bold 48px Roboto, sans-serif';
             this.ctx.textAlign="center"; 
-            this.ctx.fillText(countText, w / 2, h / 2 + 12);
+            this.ctx.fillText(countText, cx, cy + 12);
             var red = this.ctx.createLinearGradient(0,0,0,100);
             red.addColorStop(1, 'lightgrey');
             red.addColorStop(0, 'dimgrey');
@@ -41,7 +44,7 @@ export default {
             this.ctx.strokeStyle = red
             this.ctx.lineWidth = 9
             this.ctx.beginPath();
-            this.ctx.arc(w/2, h/2, 54,  Math.PI ,  Math.PI + 2 * Math.PI * stop, false )
+            this.ctx.arc(cx, cy, 54,  Math.PI ,  Math.PI + 2 * Math.PI * stop, false )
             this.ctx.stroke()
 
         }
