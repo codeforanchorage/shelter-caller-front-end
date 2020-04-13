@@ -19,14 +19,15 @@ axios.interceptors.request.use(function(config) {
     return config
     }, function(err) {
         return Promise.reject(err);
-    })  
+})  
 
 axios.interceptors.response.use(null, function (error) {
     if (error.response.status === 403 || error.response.status === 401) {
         router.push('/Login')
+    } else {
+        return Promise.reject(error)
     }
-    return Promise.reject(error)
-    })
+})
 
 router.beforeEach((to, from, next) => {
     /* to.matched is an array becuase it's possible to create nested routes. 

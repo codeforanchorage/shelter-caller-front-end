@@ -51,13 +51,9 @@
             save(data){    
                 axios.post(`${process.env.VUE_APP_API_URL}update_shelter/`, data)
                 .then(res => {
-                    if (!res.data.error) {
-                       //Object.keys(this.shelter).forEach(key => this.$set(this.shelter, key, this.shelter[key]) )
-                       this.$emit('newshelter',res.data.result)
+                       this.$emit('newshelter',res.data)
                        this.shelter = {}
-                    }
                 })
-                
             }
         },
         components: {TheMask},

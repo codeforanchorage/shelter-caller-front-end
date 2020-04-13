@@ -58,12 +58,7 @@
             },
             deleteshelter(){
                 axios.get(`${process.env.VUE_APP_API_URL}delete_shelter/${this.shelterCopy.id}`)
-                .then(res => {
-                    if (res.data.result === "success"){
-                        this.$emit("delete")
-                    }
-                })
-
+                .then(() => this.$emit("delete"))
             },
             canceldelete(){
                 this.showConfirm = false
@@ -75,11 +70,9 @@
             },
             save(data){
                 axios.post(`${process.env.VUE_APP_API_URL}update_shelter/`, data)
-                .then(res => {
-                    if (res.data.result){
+                .then(() => {
                         Object.keys(this.shelter).forEach(key => this.$set(this.shelter, key, this.shelterCopy[key]) )
                         this.flip()
-                    }
                 })
             }
         },
