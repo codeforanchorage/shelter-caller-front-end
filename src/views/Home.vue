@@ -70,7 +70,6 @@ export default {
             let [year, month, day] = res.data.date.split('-')
             this.date = new Date(year, month - 1, day)
 
-            console.log("Date", this.date)
             this.yesterday = res.data.yesterday
             this.tomorrow = res.data.tomorrow
             this.loaded = true

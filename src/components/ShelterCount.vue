@@ -44,8 +44,7 @@
 import circlecount from '@/components/CircleCount.vue'
 import flipcard from '@/components/FlipCard.vue'
 import axios from "axios"
-
-import {allowedRoles} from '../mixins/auth_mixins'
+import {mapGetters} from "vuex"
 
 export default {
     name: "shelterCount",
@@ -59,7 +58,7 @@ export default {
         }
     },
     components:{circlecount, flipcard},
-    mixins:[allowedRoles],
+   // mixins:[allowedRoles],
     methods:{
         flipCard(){
             this.countInput = this.data.personcount
@@ -113,7 +112,11 @@ export default {
             return this.data.bedcount < 0 
             ? "100% capacity"
             : (((this.data.capacity - this.data.bedcount)/ this.data.capacity) * 100).toFixed(2) + '% capacity'       
-        }
+        },
+        ...mapGetters([
+            'isLoggedIn',
+            'hasRole'
+        ])
     },
     watch:{
         'data.personcount'(){

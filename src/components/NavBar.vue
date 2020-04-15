@@ -3,16 +3,16 @@
         <div class="toolbar_content">
            <div class="nav_title">Bed<b>Count</b></div>
             <div class="space"></div>
-            <div class="navlink" v-if="loggedin && hasRole('admin')">
+            <div class="navlink" v-if="isLoggedIn && hasRole('admin')">
                 <router-link :to="{name: 'home'}">Counts <font-awesome-icon icon="chart-bar" /></router-link>
             </div>
-            <div class="navlink" v-if="loggedin && hasRole('admin')">
+            <div class="navlink" v-if="isLoggedIn && hasRole('admin')">
                 <router-link :to="{name: 'shelters'}">Shelters <font-awesome-icon icon="bed" /> </router-link>
             </div>
-            <div class="navlink" v-if="loggedin && hasRole('admin')">
+            <div class="navlink" v-if="isLoggedIn && hasRole('admin')">
                 <router-link :to="{name: 'preferences'}">Prefs <font-awesome-icon icon="cogs" /> </router-link>
             </div>
-            <div class="navlink" v-if="loggedin">
+            <div class="navlink" v-if="isLoggedIn">
                  <a @click="signout">sign out <font-awesome-icon icon="sign-out-alt" /></a>
             </div>
             <div class="navlink" v-else>
@@ -22,18 +22,19 @@
     </nav>
 </template>
 <script>
-    import {allowedRoles} from '../mixins/auth_mixins'
+    import { mapGetters } from 'vuex'
     export default {
         name: 'navbar',
-        props: {
-            msg: String
-        },
-        mixins:[allowedRoles],
         methods: {
             signout(){
-                this.$root.signOut()
-                this.$router.push('/Login')
+                this.$store.dispatch('logOut')
             }
+        },
+        computed: {
+            ...mapGetters([
+                'isLoggedIn',
+                'hasRole'
+            ])
         }
     }
 </script>

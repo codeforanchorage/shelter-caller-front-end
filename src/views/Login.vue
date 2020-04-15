@@ -1,7 +1,6 @@
 <!--
     Displays login panel and sends login to API.
-    On success API should respond with a JWT which is handled
-    by src/auth.js
+    On success API should respond with a JWT which is saved to local storage
 -->
 <template>
     <div id="loginContainer">
@@ -25,10 +24,6 @@
 </template>
 
 <script>
-import auth from '@/auth.js'
-import axios from 'axios'
-
-const apiURL = `${process.env.VUE_APP_API_URL}admin_login/`
 
 export default {
     name: 'login',
@@ -44,27 +39,19 @@ export default {
         sendLogin: function(e){
             this.loading = true
             this.error=false
-            axios.post(apiURL, {user: this.user, password: this.password} )
-            .then(r => {
+            return this.$store.dispatch('login', {user: this.user, password: this.password})
+            .then(() => {
                 this.loading = false
-                if(r.data.jwt){
-                    auth.token =  r.data.jwt
-                    auth.roles = r.data.roles
-                    this.$root.signIn()
-                    this.$router.push('/')
-                }
-                })
-            .catch(err => {
+                this.$router.push('/')
+            })
+            .catch(() => {
                 this.loading = false
-                this.error = err.response.message
+                this.error = ""
                 this.password = ''
                 e.target.reset() // brings placeholder text back in safari
                 e.target.querySelector("input").blur()
-                })
+            })
         }
-    },
-    created(){
-        this.$root.signOut()
     }
 }
 
