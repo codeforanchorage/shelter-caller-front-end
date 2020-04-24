@@ -15,9 +15,7 @@
             <div class="navlink" v-if="isLoggedIn">
                  <a @click="signout">sign out <font-awesome-icon icon="sign-out-alt" /></a>
             </div>
-            <div class="navlink" v-else>
-               <router-link :to="{name: 'Login'}">sign in <font-awesome-icon icon="sign-in-alt" /> </router-link>
-            </div>
+            
         </div>
     </nav>
 </template>

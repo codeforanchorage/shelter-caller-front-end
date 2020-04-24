@@ -30,12 +30,14 @@ describe('NavBar.vue', () => {
         const wrapper = shallowMount(NavBar, {store, localVue})
         expect(wrapper.text()).to.include("sign out")
     })
+    /*
     it('renders sign in when logged out', () => {
         isLoggedIn.returns(false)
         hasRoleStub.returns(false)
         const wrapper = shallowMount(NavBar, {store, localVue})
         expect(wrapper.text()).to.include("sign in")
     })
+    */
     it('does not render admin links when hasrole is false', () => {
         isLoggedIn.returns(true)
         hasRoleStub.returns(false)
